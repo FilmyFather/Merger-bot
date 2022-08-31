@@ -52,7 +52,7 @@ class MergeBot(Client):
         try:
             self.send_message(chat_id=int(Config.OWNER), text="<b>Bot Started!</b>")
         except Exception as err:
-            LOGGER.error("Boot alert failed! Please start bot in PM")
+            LOGGER.error("𝐁𝐨𝐨𝐭 𝐚𝐥𝐞𝐫𝐭 𝐟𝐚𝐢𝐥𝐞𝐝! 𝐏𝐥𝐞𝐚𝐬𝐞 𝐬𝐭𝐚𝐫𝐭 𝐛𝐨𝐭 𝐢𝐧 𝐏𝐌")
         return LOGGER.info("Bot Started!")
 
     def stop(self):
@@ -81,7 +81,7 @@ async def sendLogFile(c:Client,m:Message):
 @mergeApp.on_message(filters.command(["login"]) & filters.private)
 async def allowUser(c: Client, m: Message):
     if await database.allowedUser(uid=m.from_user.id) is True | m.from_user.id == int(Config.OWNER):
-        await m.reply_text(text=f"**Dont Spam**\n  ⚡ You can use me!!", quote=True)
+        await m.reply_text(text=f"**Dont Spam**\n  ⚡ 𝐍𝐨𝐰 𝐲𝐨𝐮 𝐜𝐚𝐧 𝐮𝐬𝐞 𝐦𝐞!!", quote=True)
     else:
         passwd = m.text.split(" ", 1)[1]
         passwd = passwd.strip()
@@ -92,11 +92,11 @@ async def allowUser(c: Client, m: Message):
                 lname=m.from_user.last_name,
             )
             await m.reply_text(
-                text=f"**Login passed ✅,**\n  ⚡ Now you can use me!!", quote=True
+                text=f"**Login passed ✅,**\n  ⚡ 𝐍𝐨𝐰 𝐲𝐨𝐮 𝐜𝐚𝐧 𝐮𝐬𝐞 𝐦𝐞!!", quote=True
             )
         else:
             await m.reply_text(
-                text=f"**Login failed ❌,**\n  🛡️ Unfortunately you can't use me\n\nContact: 🈲 @{Config.OWNER_USERNAME}",
+                text=f"**Login failed ❌,**\n  🛡️ ᴜɴꜰᴏʀᴛᴜɴᴀᴛᴇʟʏ ʏᴏᴜ ᴄᴀɴ'ᴛ ᴜꜱᴇ ᴍᴇ\n\n**𝐂𝐨𝐧𝐭𝐚𝐜𝐭: 🈲 @{Config.OWNER_USERNAME}",
                 quote=True,
             )
     return
@@ -169,7 +169,7 @@ async def broadcast_handler(c: Client, m: Message):
         await asyncio.sleep(3)
     await status.edit_text(
         text=BROADCAST_MSG.format(len, success)
-        + f"**Failed: {str(len-success)}**\n\n__🤓 Broadcast completed sucessfully__",
+        + f"**Failed: {str(len-success)}**\n\n__🤓 𝐁𝐫𝐨𝐚𝐝𝐜𝐚𝐬𝐭 𝐂𝐨𝐦𝐩𝐥𝐞𝐭𝐞𝐝 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲__",
     )
 
 
@@ -183,12 +183,12 @@ async def start_handler(c: Client, m: Message):
         )
         if await database.allowedUser(uid=m.from_user.id) is False:
             res = await m.reply_text(
-                text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Unfortunately you can't use me\n\n**Contact: 🈲 @{Config.OWNER_USERNAME}** ",
+                text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ ᴜɴꜰᴏʀᴛᴜɴᴀᴛᴇʟʏ ʏᴏᴜ ᴄᴀɴ'ᴛ ᴜꜱᴇ ᴍᴇ\n\n**𝐂𝐨𝐧𝐭𝐚𝐜𝐭: 🈲 @{Config.OWNER_USERNAME}** ",
                 quote=True,
             )
             return
     res = await m.reply_text(
-        text=f"Hi **{m.from_user.first_name}**\n\n ⚡ I am a file/video merger bot\n\n😎 I can merge Telegram files!, And upload it to telegram\n\n**Owner: 🈲 @{Config.OWNER_USERNAME}** ",
+        text=f"Hi **{m.from_user.first_name}**\n\n ⚡𝐇𝐢𝐞𝐞 𝐈 𝐀𝐦 𝐀 𝐅𝐢𝐥𝐞/𝐕𝐢𝐝𝐞𝐨 𝐌𝐞𝐫𝐠𝐞𝐫 𝐁𝐨𝐭\n\n😎 𝐈 𝐂𝐚𝐧 𝐌𝐞𝐫𝐠𝐞 𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦 𝐅𝐢𝐥𝐞𝐬!, 𝐀𝐧𝐝 𝐔𝐩𝐥𝐨𝐚𝐝 𝐈𝐭 𝐓𝐨 𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦\n\n**Owner: 🈲 @{Config.OWNER_USERNAME}** ",
         quote=True,
     )
 
@@ -199,13 +199,13 @@ async def files_handler(c: Client, m: Message):
     if user_id != int(Config.OWNER):
         if await database.allowedUser(uid=user_id) is False:
             res = await m.reply_text(
-                text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Unfortunately you can't use me\n\n**Contact: 🈲 @{Config.OWNER_USERNAME}** ",
+                text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ ᴜɴꜰᴏʀᴛᴜɴᴀᴛᴇʟʏ ʏᴏᴜ ᴄᴀɴ'ᴛ ᴜꜱᴇ ᴍᴇ\n\n**𝐂𝐨𝐧𝐭𝐚𝐜𝐭: 🈲 @{Config.OWNER_USERNAME}** ",
                 quote=True,
             )
             return
     input_ = f"downloads/{str(user_id)}/input.txt"
     if os.path.exists(input_):
-        await m.reply_text("Sorry Bro,\nAlready One process in Progress!\nDon't Spam.")
+        await m.reply_text("ꜱᴏʀʀʏ ʙʀᴏ,\nᴀʟʀᴇᴀᴅʏ ᴏɴᴇ ᴘʀᴏᴄᴇꜱꜱ ɪɴ ᴘʀᴏɢʀᴇꜱꜱ!\nᴅᴏɴ'ᴛ ꜱᴘᴀᴍ.")
         return
     media = m.video or m.document or m.audio
     if media.file_name is None:
@@ -214,12 +214,12 @@ async def files_handler(c: Client, m: Message):
     currentFileNameExt = media.file_name.rsplit(sep=".")[-1].lower()
     if currentFileNameExt in "conf":
         await m.reply_text(
-            text="**💾 Config file found, Do you want to save it?**",
+            text="**💾 ᴄᴏɴꜰɪɢ ꜰɪʟᴇ ꜰᴏᴜɴᴅ, ᴅᴏ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ꜱᴀᴠᴇ ɪᴛ?**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("✅ Yes", callback_data=f"rclone_save"),
-                        InlineKeyboardButton("❌ No", callback_data="rclone_discard"),
+                        InlineKeyboardButton("✅ ʏᴇꜱ", callback_data=f"rclone_save"),
+                        InlineKeyboardButton("❌ ɴᴏ", callback_data="rclone_discard"),
                     ]
                 ]
             ),
@@ -242,18 +242,18 @@ async def files_handler(c: Client, m: Message):
             user_id, None
         ) is not None and currentFileNameExt != formatDB.get(user_id):
             await m.reply_text(
-                f"First you sent a {formatDB.get(user_id).upper()} file so now send only that type of file.",
+                f"ꜰɪʀꜱᴛ ʏᴏᴜ ꜱᴇɴᴛ ᴀ {formatDB.get(user_id).upper()} ꜰɪʟᴇ ꜱᴏ ɴᴏᴡ ꜱᴇɴᴅ ᴏɴʟʏ ᴛʜᴀᴛ ᴛʏᴘᴇ ᴏꜰ ꜰɪʟᴇ.",
                 quote=True,
             )
             return
         if currentFileNameExt not in VIDEO_EXTENSIONS:
             await m.reply_text(
-                "This Video Format not Allowed!\nOnly send MP4 or MKV or WEBM.",
+                "ᴛʜɪꜱ ᴠɪᴅᴇᴏ ꜰᴏʀᴍᴀᴛ ɴᴏᴛ ᴀʟʟᴏᴡᴇᴅ!\nᴏɴʟʏ ꜱᴇɴᴅ ᴍᴘ4 ᴏʀ ᴍᴋᴠ ᴏʀ ᴡᴇʙᴍ.",
                 quote=True,
             )
             return
         editable = await m.reply_text("Please Wait ...", quote=True)
-        MessageText = "Okay,\nNow Send Me Next Video or Press **Merge Now** Button!"
+        MessageText = "ᴏᴋᴀʏ,\nɴᴏᴡ ꜱᴇɴᴅ ᴍᴇ ɴᴇxᴛ ᴠɪᴅᴇᴏ ᴏʀ ᴘʀᴇꜱꜱ *𝐌𝐞𝐫𝐠𝐞 𝐍𝐨𝐰** ʙᴜᴛᴛᴏɴ!"
 
         if queueDB.get(user_id, None) is None:
             queueDB.update({user_id: {"videos": [], "subtitles": [], "audios":[]}})
@@ -270,7 +270,7 @@ async def files_handler(c: Client, m: Message):
 
             if len(queueDB.get(user_id)["videos"]) == 1:
                 reply_ = await editable.edit(
-                    "**Send me some more videos to merge them into single file**",
+                    "**ꜱᴇɴᴅ ᴍᴇ ꜱᴏᴍᴇ ᴍᴏʀᴇ ᴠɪᴅᴇᴏꜱ ᴛᴏ ᴍᴇʀɢᴇ ᴛʜᴇᴍ ɪɴᴛᴏ ꜱɪɴɢʟᴇ ꜰɪʟᴇ**",
                     reply_markup=InlineKeyboardMarkup(
                         bMaker.makebuttons(["Cancel"], ["cancel"])
                     ),
@@ -284,7 +284,7 @@ async def files_handler(c: Client, m: Message):
                     chat_id=m.chat.id, message_ids=replyDB.get(user_id)
                 )
             if len(queueDB.get(user_id)["videos"]) == 10:
-                MessageText = "Okay, Now Just Press **Merge Now** Button Plox!"
+                MessageText = "ᴏᴋᴀʏ, ɴᴏᴡ ᴊᴜꜱᴛ ᴘʀᴇꜱꜱ **𝐌𝐞𝐫𝐠𝐞 𝐍𝐨𝐰** ʙᴜᴛᴛᴏɴ ᴘʟᴏx!"
             markup = await makeButtons(c, m, queueDB)
             reply_ = await editable.edit(
                 text=MessageText, reply_markup=InlineKeyboardMarkup(markup)
@@ -299,7 +299,7 @@ async def files_handler(c: Client, m: Message):
     elif MERGE_MODE[user_id] == 2:
         editable = await m.reply_text("Please Wait ...", quote=True)
         MessageText = (
-            "Okay,\nNow Send Me Some More <u>Audios</u> or Press **Merge Now** Button!"
+            "ᴏᴋᴀʏ,\nɴᴏᴡ ꜱᴇɴᴅ ᴍᴇ ꜱᴏᴍᴇ ᴍᴏʀᴇ <u>Audios</u> ᴏʀ ᴘʀᴇꜱꜱ **𝐌𝐞𝐫𝐠𝐞 𝐍𝐨𝐰** ʙᴜᴛᴛᴏɴ!"
         )
 
         if queueDB.get(user_id, None) is None:
@@ -331,7 +331,7 @@ async def files_handler(c: Client, m: Message):
             )
             replyDB.update({user_id: reply_.id})
         else:
-            await m.reply("This Filetype is not valid")
+            await m.reply("ᴛʜɪꜱ ꜰɪʟᴇᴛʏᴘᴇ ɪꜱ ɴᴏᴛ ᴠᴀʟɪᴅ")
             return
 
     elif MERGE_MODE[user_id] == 3:
@@ -344,7 +344,7 @@ async def files_handler(c: Client, m: Message):
             queueDB.get(user_id)["videos"].append(m.id)
             # if len(queueDB.get(user_id)["videos"])==1:
             reply_ = await editable.edit(
-                text="Now, Send all the subtitles you want to merge",
+                text="ɴᴏᴡ, ꜱᴇɴᴅ ᴀʟʟ ᴛʜᴇ ꜱᴜʙᴛɪᴛʟᴇꜱ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴍᴇʀɢᴇ",
                 reply_markup=InlineKeyboardMarkup(
                     bMaker.makebuttons(["Cancel"], ["cancel"])
                 ),
@@ -367,7 +367,7 @@ async def files_handler(c: Client, m: Message):
             )
             replyDB.update({user_id: reply_.id})
         else:
-            await m.reply("This Filetype is not valid")
+            await m.reply("ᴛʜɪꜱ ꜰɪʟᴇ ᴛʏᴘᴇ ɪꜱ ɴᴏᴛ ᴠᴀʟɪᴅ")
             return
 
 
@@ -376,31 +376,31 @@ async def photo_handler(c: Client, m: Message):
     if m.from_user.id != int(Config.OWNER):
         if await database.allowedUser(uid=m.from_user.id) is False:
             res = await m.reply_text(
-                text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Unfortunately you can't use me\n\n**Contact: 🈲 @{Config.OWNER_USERNAME}** ",
+                text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ 𝐔𝐧𝐟𝐨𝐫𝐭𝐮𝐧𝐚𝐭𝐞𝐥𝐲 𝐘𝐨𝐮 𝐂𝐚𝐧'𝐭 𝐔𝐬𝐞 𝐌𝐞\n\n**Contact: 🈲 @{Config.OWNER_USERNAME}** ",
                 quote=True,
             )
             return
     thumbnail = m.photo.file_id
-    msg = await m.reply_text("Saving Thumbnail. . . .", quote=True)
+    msg = await m.reply_text("ꜱᴀᴠɪɴɢ ᴛʜᴜᴍʙɴᴀɪʟ. . . .", quote=True)
     await database.saveThumb(m.from_user.id, thumbnail)
     LOCATION = f"./downloads/{m.from_user.id}_thumb.jpg"
     await c.download_media(message=m, file_name=LOCATION)
-    await msg.edit_text(text="✅ Custom Thumbnail Saved!")
+    await msg.edit_text(text="✅ ᴄᴜꜱᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ ꜱᴀᴠᴇᴅ!")
 
 
 @mergeApp.on_message(filters.command(["help"]) & filters.private)
 async def help_msg(c: Client, m: Message):
     await m.reply_text(
-        text="""**Follow These Steps:
+        text="""**𝐅𝐨𝐥𝐥𝐨𝐰 𝐓𝐡𝐞𝐬𝐞 𝐒𝐭𝐞𝐩𝐬:
 
-1) Send me the custom thumbnail (optional).
-2) Send two or more Your Videos Which you want to merge
-3) After sending all files select merge options
-4) Select the upload mode.
-5) Select rename if you want to give custom file name else press default**""",
+1) ꜱᴇɴᴅ ᴍᴇ ᴛʜᴇ ᴄᴜꜱᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ (ᴏᴘᴛɪᴏɴᴀʟ).
+2) ꜱᴇɴᴅ ᴛᴡᴏ ᴏʀ ᴍᴏʀᴇ ʏᴏᴜʀ ᴠɪᴅᴇᴏꜱ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴍᴇʀɢᴇ
+3) ᴀꜰᴛᴇʀ ꜱᴇɴᴅɪɴɢ ᴀʟʟ ꜰɪʟᴇꜱ ꜱᴇʟᴇᴄᴛ ᴍᴇʀɢᴇ ᴏᴘᴛɪᴏɴꜱ
+4) ꜱᴇʟᴇᴄᴛ ᴛʜᴇ ᴜᴘʟᴏᴀᴅ ᴍᴏᴅᴇ.
+5) ꜱᴇʟᴇᴄᴛ ʀᴇɴᴀᴍᴇ ɪꜰ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢɪᴠᴇ ᴄᴜꜱᴛᴏᴍ ꜰɪʟᴇ ɴᴀᴍᴇ ᴇʟꜱᴇ ᴘʀᴇꜱꜱ ᴅᴇꜰᴀᴜʟᴛ**""",
         quote=True,
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("Close 🔐", callback_data="close")]]
+            [[InlineKeyboardButton("ᴄʟᴏꜱᴇ 🔐", callback_data="close")]]
         ),
     )
 
@@ -422,16 +422,16 @@ async def about_handler(c: Client, m: Message):
         quote=True,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("Developer", url="https://t.me/yashoswalyo")],
+                [InlineKeyboardButton("Developer", url="https://t.me/Yuvi_4502")],
                 [
                     InlineKeyboardButton(
-                        "Source Code", url="https://github.com/yashoswalyo/MERGE-BOT"
+                        "Source Code", url="https://github.com/FilmyFather/Merger-Bot"
                     ),
                     InlineKeyboardButton(
-                        "Deployed By", url=f"https://t.me/{Config.OWNER_USERNAME}"
+                        "Deployed By 𝝲𝞄𝙫𝝘𝛂𝐉", url=f"https://t.me/{Config.OWNER_USERNAME}"
                     ),
                 ],
-                [InlineKeyboardButton("Close 🔐", callback_data="close")],
+                [InlineKeyboardButton("ᴄʟᴏꜱᴇ 🔐", callback_data="close")],
             ]
         ),
     )
@@ -444,13 +444,13 @@ async def show_thumbnail(c: Client, m: Message):
         LOCATION = f"./downloads/{m.from_user.id}_thumb.jpg"
         await c.download_media(message=str(thumb_id), file_name=LOCATION)
         if os.path.exists(LOCATION) is False:
-            await m.reply_text(text="❌ Custom thumbnail not found", quote=True)
+            await m.reply_text(text="❌ ᴄᴜꜱᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ ɴᴏᴛ ꜰᴏᴜɴᴅ!", quote=True)
         else:
             await m.reply_photo(
-                photo=LOCATION, caption="🖼️ Your custom thumbnail", quote=True
+                photo=LOCATION, caption="🖼️ ʏᴏᴜʀ ᴄᴜꜱᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ✔", quote=True
             )
     except Exception as err:
-        await m.reply_text(text="❌ Custom thumbnail not found", quote=True)
+        await m.reply_text(text="❌ ᴄᴜꜱᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ ɴᴏᴛ ꜰᴏᴜɴᴅ!", quote=True)
 
 
 @mergeApp.on_message(filters.command(["deletethumbnail"]) & filters.private)
@@ -459,9 +459,9 @@ async def delete_thumbnail(c: Client, m: Message):
         await database.delThumb(m.from_user.id)
         if os.path.exists(f"downloads/{str(m.from_user.id)}"):
             os.remove(f"downloads/{str(m.from_user.id)}")
-        await m.reply_text("✅ Deleted Sucessfully", quote=True)
+        await m.reply_text("✅ ᴅᴇʟᴇᴛᴇᴅ ꜱᴜᴄᴇꜱꜱꜰᴜʟʟʏ ✔", quote=True)
     except Exception as err:
-        await m.reply_text(text="❌ Custom thumbnail not found", quote=True)
+        await m.reply_text(text="❌ ᴄᴜꜱᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ ɴᴏᴛ ꜰᴏᴜɴᴅ!", quote=True)
 
 
 async def showQueue(c: Client, cb: CallbackQuery):
@@ -552,8 +552,8 @@ async def makeButtons(bot: Client, m: Message, db: dict):
                     ]
                 )
 
-    markup.append([InlineKeyboardButton("🔗 Merge Now", callback_data="merge")])
-    markup.append([InlineKeyboardButton("💥 Clear Files", callback_data="cancel")])
+    markup.append([InlineKeyboardButton("🔗 ᴍᴇʀɢᴇ ɴᴏᴡ", callback_data="merge")])
+    markup.append([InlineKeyboardButton("💥 ᴄʟᴇᴀʀ ꜰɪʟᴇꜱ", callback_data="cancel")])
     return markup
 
 LOGCHANNEL = Config.LOGCHANNEL
@@ -578,7 +578,7 @@ if __name__ == "__main__":
     #     bot_username = bot.username
     try:
         with userBot:
-            userBot.send_message(chat_id=int(LOGCHANNEL), text="Bot booted with Premium Account,\n\n  Thanks for using <a href='https://github.com/yashoswalyo/merge-bot'>this repo</a>",disable_web_page_preview=True)
+            userBot.send_message(chat_id=int(LOGCHANNEL), text="Bot booted with Premium Account,\n\n  Thanks for using <a href='https://github.com/FilmyFather/Merger-bot'>this repo</a>",disable_web_page_preview=True)
             user = userBot.get_me()
             Config.IS_PREMIUM = user.is_premium
     except Exception as err:
